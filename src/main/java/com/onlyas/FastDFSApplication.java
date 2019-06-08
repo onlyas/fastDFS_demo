@@ -1,5 +1,6 @@
 package com.onlyas;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +9,12 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@Slf4j
 public class FastDFSApplication {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(FastDFSApplication.class, args);
+        log.debug("启动成功！");
     }
 
     //Tomcat large file upload connection reset
