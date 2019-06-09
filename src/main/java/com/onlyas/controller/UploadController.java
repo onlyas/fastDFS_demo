@@ -26,6 +26,7 @@ public class UploadController {
             FileInfoVO fileInfoVO = saveFile(uploadfile);
             return fileInfoVO;
         } catch (Exception e) {
+            logger.error("upload file Exception!",e);
             return null;
         }
     }
