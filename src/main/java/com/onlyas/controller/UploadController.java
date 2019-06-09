@@ -3,6 +3,8 @@ package com.onlyas.controller;
 import com.onlyas.fastdfs.FastDFSClient;
 import com.onlyas.fastdfs.FastDFSFile;
 import com.onlyas.model.FileInfoVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,8 @@ import java.io.InputStream;
 @RestController
 @RequestMapping("/api/file")
 public class UploadController {
+
+    private static Logger logger = LoggerFactory.getLogger(UploadController.class);
 
     @PostMapping("/upload")
     public FileInfoVO upload(@RequestParam("file") MultipartFile uploadfile) {
@@ -48,10 +52,10 @@ public class UploadController {
         try {
             fileAbsolutePath = FastDFSClient.upload(file);  //upload to fastdfs
         } catch (Exception e) {
-            //logger.error("upload file Exception!",e);
+            logger.error("upload file Exception!",e);
         }
         if (fileAbsolutePath == null) {
-            //logger.error("upload file failed,please upload again!");
+            logger.error("upload file failed,please upload again!");
         }
         String path = FastDFSClient.getTrackerUrl() + fileAbsolutePath[0] + "/" + fileAbsolutePath[1];
         fileInfoVO.setTrackerUrl(FastDFSClient.getTrackerUrl());

@@ -2,13 +2,14 @@ package com.onlyas.fastdfs;
 
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.*;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.*;
 
 public class FastDFSClient {
-	private static org.slf4j.Logger logger = LoggerFactory.getLogger(FastDFSClient.class);
+	private static Logger logger = LoggerFactory.getLogger(FastDFSClient.class);
 
 	static {
 		try {
