@@ -5,10 +5,7 @@ import com.onlyas.fastdfs.FastDFSFile;
 import com.onlyas.model.FileInfoVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -27,6 +24,17 @@ public class UploadController {
             return fileInfoVO;
         } catch (Exception e) {
             logger.error("upload file Exception!",e);
+            return null;
+        }
+    }
+
+    @PostMapping("/delete")
+    public FileInfoVO delete(@RequestBody FileInfoVO fileInfoVO) {
+        try {
+            FastDFSClient.deleteFile(fileInfoVO.getGroupName(),fileInfoVO.getRemoteFileName());
+            return fileInfoVO;
+        } catch (Exception e) {
+            logger.error("delete file Exception!",e);
             return null;
         }
     }
